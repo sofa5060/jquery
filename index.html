@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <title>Document</title>
+</head>
+
+<style>
+  .filter_hidden {
+    display: none;
+  }
+</style>
+
+<body>
+  <div class="filter_block">
+    <div class="filter_block-header">
+      <h3 id="w-node-_8cb8cc6b-d70e-5a34-7c5f-324c9b4cdb78-3c7d7dd3" class="filter-block-label">City</h3>
+      <a fs-cmsfilter-reset="bath" fs-cmsfilter-element="reset" href="#" class="filter_reset">Clear</a>
+    </div>
+    <div class="filter_options"><select id="select-city" name="select-3" data-name="Select 3" fs-cmsfilter-field="bath"
+        fs-cmsfilter-tagcategory="Year" class="filter_select w-select">
+        <option value="">Select City</option>
+        <option value="Asian Istanbul">Asian Istanbul</option>
+        <option value="European Istanbul">European Istanbul</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select></div>
+  </div>
+  <div id="select-asia">
+    <div class="filter_block-header">
+      <h3 id="w-node-cdcfdf72-89e9-9edc-bc56-df87adb5c2c8-3c7d7dd3" class="filter-block-label">Asian Istanbul</h3>
+      <a fs-cmsfilter-reset="bath" fs-cmsfilter-element="reset" href="#" class="filter_reset">Clear</a>
+    </div>
+    <div class="filter_options"><select id="select-3" name="select-3" data-name="Select 3" fs-cmsfilter-field="bath"
+        fs-cmsfilter-tagcategory="Year" class="filter_select w-select">
+        <option value="">Select Area</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select></div>
+  </div>
+  <div id="select-euro">
+    <div class="filter_block-header">
+      <h3 id="w-node-fe504d48-a135-1b46-e1f0-013aacfd8950-3c7d7dd3" class="filter-block-label">European Istanbul</h3>
+      <a fs-cmsfilter-reset="bath" fs-cmsfilter-element="reset" href="#" class="filter_reset">Clear</a>
+    </div>
+    <div class="filter_options"><select id="select-3" name="select-3" data-name="Select 3" fs-cmsfilter-field="bath"
+        fs-cmsfilter-tagcategory="Year" class="filter_select w-select">
+        <option value="">Select Area</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select></div>
+  </div>
+  </div>
+  <script>
+    $(document).ready(function () {
+      $("#select-city").change(function () {
+        const value = this.value;
+        console.log(value);
+        if (value === "Asian Istanbul") {
+          $("#select-asia").removeClass("filter_hidden");
+          $("#select-euro").addClass("filter_hidden");
+        } else if (value === "European Istanbul") {
+          $("#select-euro").removeClass("filter_hidden");
+          $("#select-asia").addClass("filter_hidden");
+        } else {
+          $("#select-euro").addClass("filter_hidden");
+          $("#select-asia").addClass("filter_hidden");
+        }
+      })
+    });
+  </script>
+</body>
+
+</html>

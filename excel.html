@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="table-row-wrapper">
+  </div>
+  <script>
+    const sheetName = "Sheet1"
+    const APIKey = "AIzaSyB7yTq--YGsEQYzPjP-0KKjrT9Mo2DYMyY"
+    const shareLink = "https://docs.google.com/spreadsheets/d/1GNJ_XkMN_nJAycc2jN4U5X3p76YSzzQmYIT1QPhGdO8/edit?usp=sharing"
+    const sheetId = shareLink.split('/').reverse()[1]
+    // const sheetId = "1GNJ_XkMN_nJAycc2jN4U5X3p76YSzzQmYIT1QPhGdO8"
+    // const queryLink = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${sheetName}/?key=${APIKey}`
+    const queryLink = "https://sheets.googleapis.com/v4/spreadsheets/" + sheetId + "/values/" + sheetName + "/?key=" + APIKey
+
+    const fetchData = async () => {
+      try {
+        const res = await axios(queryLink)
+        let rows = res.data.values
+        rows = rows.filter(col => col.length > 0);
+        console.log(rows)
+        $("#table-row-wrapper").append("<div class='table-row'>" + rows[0].map(col => "<div class='table-header'>" + col + "</div>").join('') + "</div>")
+        rows.slice(1).forEach(row => {
+          $("#table-row-wrapper").append("<div class='table-row'>" + row.map(function(col) {
+            return "<div class='table-header'>" + col + "</div>";
+          }).join('') + "</div>");
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    fetchData();
+  </script>
+</body>
+
+</html>
